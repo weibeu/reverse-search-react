@@ -7,7 +7,7 @@ import MovieReverseSearch from './components/search/MovieReverseSearch';
 
 
 const SEARCH_COMPONENTS = {
-    movieReverse: MovieReverseSearch,
+    movieReverse: <MovieReverseSearch />,
 }
 
 
@@ -36,6 +36,7 @@ export default class App extends Component {
         if (!this.state.searchQuery) {
             return
         }
+        this.setState({searchComponent: SEARCH_COMPONENTS[event.target.attributes.searchtype.value]})
         event.preventDefault();
     }
 
@@ -43,7 +44,15 @@ export default class App extends Component {
         return (
             <div className="App">
                 <div id="wrapper">
-                    {this.state.searchComponent ? <Main closeSearchComponent={this.closeSearchComponent} /> : <Header searchQuery={this.state.searchQuery} handleQueryChange={this.handleQueryChange} handleQuerySubmit={this.handleQuerySubmit} />}
+                    {this.state.searchComponent
+                        ? <Main
+                            searchComponent={this.state.searchComponent}
+                            closeSearchComponent={this.closeSearchComponent}
+                        /> : <Header
+                            searchQuery={this.state.searchQuery}
+                            handleQueryChange={this.handleQueryChange}
+                            handleQuerySubmit={this.handleQuerySubmit} 
+                        />}
                     <Footer />
                 </div>
             </div>
