@@ -17,11 +17,11 @@ export default class Header extends Component {
                     <nav>
                         <ul>
                             {[
-                                "Movies Reverse Search",
-                                "Movies Forward Search",
-                                "Songs Reverse Search",
-                                "Songs Forward Search",
-                            ].map((item, index) => <li key={index}><a onClick={this.props.handleQuerySubmit} href="#">{item}</a></li>)}
+                                ["Movies Reverse Search", "movieReverse"],
+                                ["Movies Forward Search", "movieForward"],
+                                ["Songs Reverse Search", "songReverse"],
+                                ["Songs Forward Search", "songForward"],
+                            ].map((item, index) => <li key={index}><a searchtype={item[1]} onClick={this.props.handleQuerySubmit} href="#">{item[0]}</a></li>)}
                         </ul>
                     </nav>
                 </div>
