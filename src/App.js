@@ -52,7 +52,8 @@ export default class App extends Component {
                             searchQuery={this.state.searchQuery}
                             handleQueryChange={this.handleQueryChange}
                             handleQuerySubmit={this.handleQuerySubmit} 
-                        />}
+                        />
+                    }
                     <Footer />
                 </div>
             </div>
