@@ -15,11 +15,16 @@ export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchQuery: new String(),
-            displayResults: false,
+            searchQuery: "",
+            searchComponent: null,
         };
         this.handleQueryChange = this.handleQueryChange.bind(this);
         this.handleQuerySubmit = this.handleQuerySubmit.bind(this);
+        this.closeSearchComponent = this.closeSearchComponent.bind(this);
+    }
+
+    closeSearchComponent() {
+        this.setState({searchComponent: null});
     }
 
     handleQueryChange(event) {
@@ -28,6 +33,9 @@ export default class App extends Component {
     }
 
     handleQuerySubmit(event) {
+        if (!this.state.searchQuery) {
+            return
+        }
         event.preventDefault();
     }
 
@@ -35,7 +43,7 @@ export default class App extends Component {
         return (
             <div className="App">
                 <div id="wrapper">
-                    {this.state.displayResults ? <Main /> : <Header searchQuery={this.state.searchQuery} handleQueryChange={this.handleQueryChange} handleQuerySubmit={this.handleQuerySubmit} />}
+                    {this.state.searchComponent ? <Main closeSearchComponent={this.closeSearchComponent} /> : <Header searchQuery={this.state.searchQuery} handleQueryChange={this.handleQueryChange} handleQuerySubmit={this.handleQuerySubmit} />}
                     <Footer />
                 </div>
             </div>
