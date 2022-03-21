@@ -12,14 +12,16 @@ export default class Header extends Component {
                     <div className="inner">
                         <h1>Reverse Search</h1>
                         <p>Easily reverse search movies from their dialogues, songs from their lyrics and much more.</p>
-                        <SearchBar />
+                        <SearchBar searchQuery={this.props.searchQuery} handleQueryChange={this.props.handleQueryChange} />
                     </div>
                     <nav>
                         <ul>
-                            <li><a href="#">Movies Reverse Search</a></li>
-                            <li><a href="#">Movies Forward Search</a></li>
-                            <li><a href="#">Songs Reverse Search</a></li>
-                            <li><a href="#">Songs Forward Search</a></li>
+                            {[
+                                "Movies Reverse Search",
+                                "Movies Forward Search",
+                                "Songs Reverse Search",
+                                "Songs Forward Search",
+                            ].map((item, index) => <li key={index}><a onClick={this.props.handleQuerySubmit} href="#">{item}</a></li>)}
                         </ul>
                     </nav>
                 </div>
