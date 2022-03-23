@@ -33,12 +33,12 @@ export default class MovieReverseSearch extends Component {
             <>
                 <h2 className="major">{movieDetails.originaltitle}</h2>
                 <span className="image main"><img src={movieDetails.poster} alt={movieDetails.originaltitle} /></span>
-                <h2>The Dialogues</h2>
+                <h2><span className="icon fa-comment-dots" /> The Dialogues</h2>
                 <blockquote><h4 style={{marginBottom: 0}}>{this.searchQuery}</h4></blockquote>
                 <p style={{textAlign: "center"}}>
                     {subtitleMeta.map(item => item["is_key_phrase"] ? <><b>{item["dialogue"]}</b><br /></> : <>{item["dialogue"]}<br /></>)}
                 </p>
-                <h2>Movie Details</h2>
+                <h2><span className="icon fa-chart-bar" /> Movie Details</h2>
                 <table>
                     <thead>
                         <tr>
@@ -59,7 +59,7 @@ export default class MovieReverseSearch extends Component {
                         </tr>
                     </tbody>
                 </table>
-                <h2>Cast Details</h2>
+                <h2><span className="icon fa-user" /> Cast Details</h2>
                 <table>
                     <thead>
                         <tr>
