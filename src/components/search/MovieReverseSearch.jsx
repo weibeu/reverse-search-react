@@ -14,9 +14,13 @@ export default class MovieReverseSearch extends Component {
 
     componentDidMount() {
         this.setState({isLoading: true});
-        searchMovieFromSubtitles(this.searchQuery).then(response => {
-            this.setState({searchData: response.data, isLoading: false});
-        })
+        try {
+            searchMovieFromSubtitles(this.searchQuery).then(response => {
+                this.setState({searchData: response.data, isLoading: false});
+            })
+        } catch {
+            this.setState({isLoading: false});
+        }
     }
 
     render() {
