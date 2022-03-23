@@ -7,7 +7,7 @@ import MovieReverseSearch from './components/search/MovieReverseSearch';
 
 
 const SEARCH_COMPONENTS = {
-    movieReverse: <MovieReverseSearch />,
+    movieReverse: MovieReverseSearch,
 }
 
 
@@ -21,6 +21,12 @@ export default class App extends Component {
         this.handleQueryChange = this.handleQueryChange.bind(this);
         this.handleQuerySubmit = this.handleQuerySubmit.bind(this);
         this.closeSearchComponent = this.closeSearchComponent.bind(this);
+        this.getSearchElement = this.getSearchElement.bind(this);
+    }
+
+    getSearchElement(component_key) {
+        let component = SEARCH_COMPONENTS[component_key];
+        return React.createElement(component, {searchQuery: this.state.searchQuery});
     }
 
     closeSearchComponent() {
@@ -36,7 +42,7 @@ export default class App extends Component {
         if (!this.state.searchQuery) {
             return
         }
-        this.setState({searchComponent: SEARCH_COMPONENTS[event.target.attributes.searchtype.value]})
+        this.setState({searchComponent: this.getSearchElement(event.target.attributes.searchtype.value)});
         event.preventDefault();
     }
 
