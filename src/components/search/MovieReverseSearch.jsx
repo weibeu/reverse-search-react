@@ -22,7 +22,7 @@ export default class MovieReverseSearch extends Component {
     render() {
         let searchData = this.state.searchData;
         if (this.state.isLoading) {
-            return (<h2 className="major">Fetching the results from the backend ...</h2>)
+            return (<h2 className="major loading-text">Fetching the results from the backend ...</h2>)
         }
         if (Object.keys(searchData).length === 0) {
             return (<h2 className="major">No results found :(</h2>)

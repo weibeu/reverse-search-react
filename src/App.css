@@ -17,3 +17,10 @@ body::-webkit-scrollbar {
     -webkit-box-shadow: 0px 10px 30px 10px rgba(38,43,46,0.9); 
     box-shadow: 0px 10px 30px 10px rgba(38,43,46,0.9);
 }
+
+.loading-text {
+    vertical-align: middle;
+    width: 91vw;
+    position: relative;
+    left: -9vw;
+}
