@@ -51,15 +51,41 @@ export default class MovieReverseSearch extends Component {
                     </thead>
                     <tbody>
                         <tr>
-                            <th>{movieDetails.directors[0].primaryname}</th>
-                            <th>{movieDetails.genres}</th>
-                            <th>{movieDetails.writers[0].primaryname}</th>
-                            <th>{movieDetails.startyear}</th>
-                            <th>{movieDetails.averagerating}</th>
+                            <td><b>{movieDetails.directors[0].primaryname}</b></td>
+                            <td><b>{movieDetails.genres}</b></td>
+                            <td><b>{movieDetails.writers[0].primaryname}</b></td>
+                            <td><b>{movieDetails.startyear}</b></td>
+                            <td><b>{movieDetails.averagerating}</b></td>
                         </tr>
                     </tbody>
                 </table>
-
+                <h2>Cast Details</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            {/* <th>Birth Year</th> */}
+                            <th>Professions</th>
+                            <th>Role</th>
+                            <th>Character</th>
+                            <th>Appeared In</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {movieDetails.cast.map(item => {
+                            return (
+                                <tr>
+                                    <td>{item["primaryname"]}</td>
+                                    {/* <td>{item["birthyear"]}</td> */}
+                                    <td>{item["primaryprofession"]}</td>
+                                    <td>{item["category"]}</td>
+                                    <td>{item["characters"]}</td>
+                                    <td>{"".concat(item["knownfortitles"])}</td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
             </>
         )
     }
