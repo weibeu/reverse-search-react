@@ -1,13 +1,65 @@
 import React, { Component } from 'react'
+import { searchMovieFromSubtitles } from '../../api';
 
 export default class MovieReverseSearch extends Component {
+
+    constructor(props) {
+        super(props);
+        this.searchQuery = this.props.searchQuery;
+        this.state = {
+            isLoading: false,
+            searchData: {}
+        }
+    }
+
+    componentDidMount() {
+        this.setState({isLoading: true});
+        searchMovieFromSubtitles(this.searchQuery).then(response => {
+            this.setState({searchData: response.data, isLoading: false});
+        })
+    }
+
     render() {
+        let searchData = this.state.searchData;
+        if (this.state.isLoading) {
+            return (<h2 className="major">Fetching the results from the backend ...</h2>)
+        }
+        if (Object.keys(searchData).length === 0) {
+            return (<h2 className="major">No results found :(</h2>)
+        }
+        let movieDetails = searchData.movie_details;
+        let subtitleMeta = searchData.subtitle_meta;
         return (
             <>
-                <h2 className="major">Search Results</h2>
-                <span className="image main"><img src="images/pic01.jpg" alt="" /></span>
-                <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas. By the way, check out my <a href="#work">awesome work</a>.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel sed vehicula.</p>
+                <h2 className="major">{movieDetails.originaltitle}</h2>
+                <span className="image main"><img src={movieDetails.poster} alt={movieDetails.originaltitle} /></span>
+                <h2>The Dialogues</h2>
+                <blockquote><h4 style={{marginBottom: 0}}>{this.searchQuery}</h4></blockquote>
+                <p style={{textAlign: "center"}}>
+                    {subtitleMeta.map(item => item["is_key_phrase"] ? <><b>{item["dialogue"]}</b><br /></> : <>{item["dialogue"]}<br /></>)}
+                </p>
+                <h2>Movie Details</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Director</th>
+                            <th>Genres</th>
+                            <th>Writer</th>
+                            <th>Release date</th>
+                            <th>Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>{movieDetails.directors[0].primaryname}</th>
+                            <th>{movieDetails.genres}</th>
+                            <th>{movieDetails.writers[0].primaryname}</th>
+                            <th>{movieDetails.startyear}</th>
+                            <th>{movieDetails.averagerating}</th>
+                        </tr>
+                    </tbody>
+                </table>
+
             </>
         )
     }
