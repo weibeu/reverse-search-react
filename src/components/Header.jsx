@@ -12,7 +12,11 @@ export default class Header extends Component {
                     <div className="inner">
                         <h1>Reverse Search</h1>
                         <p>Easily reverse search movies from their dialogues, songs from their lyrics and much more.</p>
-                        <SearchBar searchQuery={this.props.searchQuery} handleQueryChange={this.props.handleQueryChange} />
+                        <SearchBar
+                            handleQuerySubmit={this.props.handleQuerySubmit}
+                            searchQuery={this.props.searchQuery}
+                            handleQueryChange={this.props.handleQueryChange}
+                        />
                     </div>
                     <nav>
                         <ul>

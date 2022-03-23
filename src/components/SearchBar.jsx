@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class SearchBar extends Component {
     render() {
         return (
-            <form method="POST" action="#">
+            <form searchtype="movieReverse" onSubmit={this.props.handleQuerySubmit}>
                 <input
                     value={this.props.searchQuery}
                     onChange={this.props.handleQueryChange}
