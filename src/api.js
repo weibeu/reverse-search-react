@@ -20,3 +20,8 @@ function search(route, query) {
 module.exports.searchMovieFromSubtitles = function searchMovieFromSubtitles(query) {
     return search("/search-subtitles", query);
 }
+
+
+module.exports.searchMovie = function searchMovie(query) {
+    return search("/search-movies", query);
+}

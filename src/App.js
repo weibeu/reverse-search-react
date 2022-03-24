@@ -4,10 +4,12 @@ import Main from './components/Main';
 import Footer from './components/Footer';
 import React, { Component } from 'react';
 import MovieReverseSearch from './components/search/MovieReverseSearch';
+import MovieForwardSearch from './components/search/MovieForwardSearch';
 
 
 const SEARCH_COMPONENTS = {
     movieReverse: MovieReverseSearch,
+    movieForward: MovieForwardSearch,
 }
 
 
