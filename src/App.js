@@ -28,6 +28,9 @@ export default class App extends Component {
 
     getSearchElement(component_key) {
         let component = SEARCH_COMPONENTS[component_key];
+        if (!component) {
+            return component;
+        }
         return React.createElement(component, {searchQuery: this.state.searchQuery});
     }
 
@@ -44,7 +47,12 @@ export default class App extends Component {
         if (!this.state.searchQuery) {
             return
         }
-        this.setState({searchComponent: this.getSearchElement(event.target.attributes.searchtype.value)});
+        let searchElement = this.getSearchElement(event.target.attributes.searchtype.value)
+        console.log(searchElement)
+        if (!searchElement) {
+            return
+        }
+        this.setState({searchComponent: searchElement});
         event.preventDefault();
     }
 
