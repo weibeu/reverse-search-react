@@ -77,7 +77,7 @@ export default class MovieReverseSearch extends Component {
                                 <th>Professions</th>
                                 <th>Role</th>
                                 <th>Character</th>
-                                <th>Appeared In</th>
+                                <th>Also Appeared In</th>
                             </tr>
                         </thead>
                         <tbody className="cast-tbody">
